@@ -6,6 +6,11 @@ namespace HW2
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            string[] errorMessageList = new string[10];
+            errorMessageList[0] = "Incorrect calculator input ";
+            errorMessageList[1] = "Incorrect input ";
+            errorMessageList[2] = "Incorrect calculator operation ";
             //1,2
             int number;
             int maxNumbers = 5;
@@ -16,7 +21,7 @@ namespace HW2
             bool succesNumber = Int32.TryParse(Console.ReadLine(), out number);
             if (!succesNumber)
             {
-                errorMessage += "Wrong type input";
+                errorMessage += errorMessageList[1];
             }
             else
             {
@@ -56,8 +61,10 @@ namespace HW2
             double result = 0;
             int switcher = 1;
             bool exit = false;
+            string opList = "Operation list: \n'+' \n'-' \n'*' \n'/' \n'^'-pow";
+            string menu = "Select next task: \n Write '1' for new calculate \n Write '2' for EXIT \n Write '3' for continue calculate \n Write '4' for Sqrt";
 
-            while(!exit)
+            while (!exit)
             {
                 switch (switcher)
                 {
@@ -75,13 +82,11 @@ namespace HW2
 
                                 if (wrongInput)
                                 {
-                                    errorMessage += "Incorrect calculator input; ";
-                                    Console.WriteLine(errorMessage);
-                                    errorMessage = String.Empty;
+                                    Console.WriteLine(errorMessageList[0]);
                                 }
                             }
                             wrongInput = true;
-                            Console.WriteLine("Operation list: \n'+' \n'-' \n'*' \n'/' \n'^'-pow");
+                            Console.WriteLine(opList);
                             Console.Write("Operation: ");
 
                             string op = Console.ReadLine();
@@ -104,13 +109,12 @@ namespace HW2
                                     result = Math.Pow(number1,number2);
                                     break;
                                 default:
-                                    errorMessage += "Incorrect calculator operation; ";
+                                    errorMessage += errorMessageList[2];
                                     break;
                             }
 
                             if (errorMessage.Length > 0)
                             {
-                                Console.WriteLine(result);
                                 Console.WriteLine(errorMessage);
                                 errorMessage = String.Empty;
                             }
@@ -119,15 +123,8 @@ namespace HW2
                                 Console.WriteLine("Result: " + result);
                             }
 
-                            Console.WriteLine("Select next task: \n Write '1' for new calculate \n Write '2' for EXIT \n Write '3' for continue calculate \n Write '4' for Sqrt");
+                            Console.WriteLine(menu);
                             bool s3 = int.TryParse(Console.ReadLine(), out switcher);
-                            if(!s3)
-                            {
-                                Console.WriteLine("Wrong select! Selected EXIT");
-                                switcher = 2;
-                            }
-
-
                             break;
                             //new
                         }
@@ -148,13 +145,11 @@ namespace HW2
 
                                 if (wrongInput)
                                 {
-                                    errorMessage += "Incorrect calculator input; ";
-                                    Console.WriteLine(errorMessage);
-                                    errorMessage = String.Empty;
+                                    Console.WriteLine(errorMessageList[0]);
                                 }
                             }
                             wrongInput = true;
-                            Console.WriteLine("Operation list: \n'+' \n'-' \n'*' \n'/' \n'^'-pow");
+                            Console.WriteLine(opList);
                             Console.Write("Operation: ");
 
                             string op = Console.ReadLine();
@@ -177,13 +172,12 @@ namespace HW2
                                     result = Math.Pow(number1, number2);
                                     break;
                                 default:
-                                    errorMessage += "Incorrect calculator operation; ";
+                                    errorMessage += errorMessageList[2];
                                     break;
                             }
 
                             if (errorMessage.Length > 0)
                             {
-                                Console.WriteLine(result);
                                 Console.WriteLine(errorMessage);
                                 errorMessage = String.Empty;
                             }
@@ -192,14 +186,8 @@ namespace HW2
                                 Console.WriteLine("Result: " + result);
                             }
 
-                            Console.WriteLine("Select next task: \n Write '1' for new calculate \n Write '2' for EXIT \n Write '3' for continue calculate \n Write '4' for Sqrt");
+                            Console.WriteLine(menu);
                             bool s3 = int.TryParse(Console.ReadLine(), out switcher);
-                            if (!s3)
-                            {
-                                Console.WriteLine("Wrong select! Selected EXIT");
-                                switcher = 2;
-                            }
-
                             break;
                             //continue
                         }
@@ -208,49 +196,23 @@ namespace HW2
                             result = Math.Sqrt(result);
                             Console.WriteLine("Result: " + result);
 
-                            Console.WriteLine("Select next task: \n Write '1' for new calculate \n Write '2' for EXIT \n Write '3' for continue calculate \n Write '4' for Sqrt");
+                            Console.WriteLine(menu);
                             bool s3 = int.TryParse(Console.ReadLine(), out switcher);
-                            if (!s3)
-                            {
-                                Console.WriteLine("Wrong select! Selected EXIT");
-                                switcher = 2;
-                            }
                             break;
                             //sqrt
                         }
                     default:
                         {
                             Console.WriteLine("Sorry but it's not predicted please select another!");
-                           // Console.WriteLine("Select next task: /n Write '1' to new calculate /n Write '2' to EXIT /n Write '3' to continue calculate");
                             bool s3 = int.TryParse(Console.ReadLine(), out switcher);
-                            if (!s3)
-                            {
-                                Console.WriteLine("Wrong select! Selected EXIT");
-                                switcher = 2;
-                            }
                             break;
                         }
                 }
             }
-   
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
 
             if (errorMessage == String.Empty)
             {
-                Console.WriteLine("All done");
+                Console.WriteLine("Good Luck ;)");
             }
             else
             {
