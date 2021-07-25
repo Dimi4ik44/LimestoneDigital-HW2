@@ -6,11 +6,13 @@ namespace HW2
     {
         static void Main(string[] args)
         {
+            //1,2
             int number, result;
             int maxNumbers = 5;
+            int max = 0, min = 10;
             string errorMessage = String.Empty;
 
-            Console.WriteLine("Введите 5-ти значное число");
+            Console.WriteLine("Введите " + maxNumbers + "-ти значное число");
             bool succesNumber = Int32.TryParse(Console.ReadLine(),out number);
             if(!succesNumber)
             {
@@ -26,9 +28,26 @@ namespace HW2
                 //}
                 for (int i = 0; i < maxNumbers; i++)
                 {
-                    double n = (int)(number / Math.Pow(10, (maxNumbers-1)-i)) % 10;
-                    Console.WriteLine((i + 1) + " цифра " + n);
+                    int curDigit = (int)(number / Math.Pow(10, (maxNumbers-1)-i)) % 10;
+                    if(max < curDigit)
+                    {
+                        max = curDigit;
+                    }
+                    if(min > curDigit)
+                    {
+                        min = curDigit;
+                    }
+                    Console.WriteLine((i + 1) + " цифра " + curDigit);
                 }
+                Console.WriteLine("maxDigit: " + max + " minDigit: " + min);
+            }
+            if(errorMessage==String.Empty)
+            {
+                Console.WriteLine("Ошибки: All done");
+            }
+            else
+            {
+                Console.WriteLine("Ошибки: " + errorMessage);
             }
 
 
